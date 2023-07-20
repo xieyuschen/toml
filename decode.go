@@ -134,7 +134,7 @@ var (
 
 // Decode TOML data in to the pointer `v`.
 func (dec *Decoder) Decode(v interface{}) (MetaData, error) {
-	rv := reflect.ValueOf(v)
+	rv := reflect.ValueOf(reflect.ValueOf(v).Elem().Elem())
 	if rv.Kind() != reflect.Ptr {
 		s := "%q"
 		if reflect.TypeOf(v) == nil {
